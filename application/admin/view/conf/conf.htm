@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>我的后台</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
+    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
+    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
+    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- 头部 -->
+    {include file="common/head"}
+    <!-- /头部 -->
+
+    <div class="main-container container-fluid">
+        <div class="page-container">
+            <!-- Page Sidebar -->
+            {include file="common/left"}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{:url('/admin/index')}">主页</a>
+                        </li>
+                        <li class="active">配置</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+
+                    <button type="button" tooltip="添加配置" class="btn btn-sm btn-azure btn-addon">
+                    配置预览
+                    </button>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-xs-12">
+                            <form action="{:url('Conf/conf')}" method="POST">
+                            <div class="widget">
+                                <div class="widget-body">
+                                    <div class="flip-scroll">
+                                        <table class="table table-bordered table-hover">
+                                            <thead class="">
+                                                <tr>
+                                                    <th class="text-center">配置名称</th>
+                                                    <th class="text-left">配置值</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                {foreach name="conf" item="fo"}
+                                                <tr>
+                                                    <td align="center" name="{$fo.enname}" >{$fo.cnname}</td>
+                                                    <td align="left">
+                                                        {if condition="$fo['type'] eq 1"}
+                                                            <input type="text" name="{$fo.enname}" class="form-control" value="{$fo['value']}">
+                                                        {elseif condition="$fo['type'] eq 2"}
+                                                            <textarea name="{$fo.enname}">{$fo['value']}</textarea>
+                                                        {elseif condition="$fo['type'] eq 3"}
+                                                            {if condition="$fo['values']"}
+                                                                <?php $arr = explode(',',$fo['values']); ?>
+                                                            {/if}
+                                                            <?php foreach($arr as $v):?>
+                                                            <label>
+                                                                <input type="radio" name="{$fo.enname}" value="<?php echo $v;?>">
+                                                                <span class="text"><?php echo $v;?></span><br>
+                                                            </label>
+                                                            <?php endforeach;?>
+                                                        {elseif condition="$fo['type'] eq 4"}
+                                                            {if condition="$fo['values']"}
+                                                                <?php $arr = explode(',',$fo['values']); ?>
+                                                            {/if}
+                                                            <?php foreach($arr as $v):?>
+                                                            <label>
+                                                                <input type="checkbox" class="col-name-" name="{$fo.enname}" value="<?php echo $v;?>">
+                                                                <span class="text"><?php echo $v;?></span><br>
+                                                            </label>
+                                                            <?php endforeach;?>
+                                                        {else /}
+                                                            {if condition="$fo['values']"}
+                                                                <?php $arr = explode(',',$fo['values']);?>
+                                                            {/if}                                                           
+                                                            <select name="{$fo.enname}">
+                                                            <?php foreach($arr as $v):?>
+                                                            <option value="0">{$v}</option>
+                                                            <?php endforeach;?>
+                                                            </select>                                                           
+                                                        {/if}
+                                                    </td>
+                                                </tr>
+                                                {/foreach}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div style="margin-top:5px;margin-left:600px">
+                                        <button type="submit">提交</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+        </div>
+    </div>
+
+    <!--Basic Scripts-->
+    <script src="__ADMIN__/style/jquery_002.js"></script>
+    <script src="__ADMIN__/style/bootstrap.js"></script>
+    <script src="__ADMIN__/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__ADMIN__/style/beyond.js"></script>
+
+
+
+</body>
+
+</html>
