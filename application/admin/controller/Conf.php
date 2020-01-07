@@ -20,6 +20,11 @@ class Conf extends Common
 	{
 		if(request()->isPost()){
 			$add = input('post.');
+			$Conf = new Loader;
+			$validate = $Conf::validate('Conf');
+			if(!$validate->check($add)){
+				$this->error($validate->getError());
+			}
 			if($add['values']){
 				$add['values'] = str_replace('，',',',$add['values']);
 			}
@@ -48,6 +53,11 @@ class Conf extends Common
 	{
 		if(request()->isPost()){
 			$edit = input('post.');
+			$editl = new Loader;
+			$validate = $editl::validate('Conf');
+			if(!$validate->scene('edit')->check($edit)){
+				$this->error($validate->getError());
+			}
 			if($edit['values']){
 				$edit['values'] = str_replace('，',',',$edit['values']);
 			}
@@ -68,12 +78,28 @@ class Conf extends Common
 	{
 		if(request()->request()){
 			$conf = $this->request->param();
-			ConfModel::update($conf);
+			$confres = [];
+			foreach($conf as $k=>$v){
+				$confres[] = $k;
+			}
+			$sqlres = [];
+			$res = Db::name('conf')->field('enname')->select();
+			foreach($res as $k=>$v){
+				$sqlres[] = $v['enname'];
+			}
+			$confarr = [];
+			foreach($sqlres as $k=>$v){
+				if(!in_array($v,$confres)){
+					$confarr[] = $v;
+				}
+			}		
+			foreach($conf as $k=>$v){
+				$val = ConfModel::where('enname',$k)->update(['value'=>$v]);
+			}
+			$this->success('修改成功');
 		}
 		$conf = ConfModel::select();
-
 		$this->assign('conf',$conf);
 		return $this->fetch();
 	}
-
 }

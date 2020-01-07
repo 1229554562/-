@@ -1,9 +1,7 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:66:"D:\wamp\www\yanglei\public/../application/admin\view\conf\conf.htm";i:1578039160;s:58:"D:\wamp\www\yanglei\application\admin\view\common\head.htm";i:1559011754;s:58:"D:\wamp\www\yanglei\application\admin\view\common\left.htm";i:1576568110;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:67:"D:\wamp\www\yanglei\public/../application/admin\view\admin\edit.htm";i:1576468596;s:58:"D:\wamp\www\yanglei\application\admin\view\common\head.htm";i:1559011754;s:58:"D:\wamp\www\yanglei\application\admin\view\common\left.htm";i:1576568110;}*/ ?>
 <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
+<html><head>
+	    <meta charset="utf-8">
     <title>我的后台</title>
 
     <meta name="description" content="Dashboard">
@@ -20,11 +18,10 @@
     <link href="/static/admin/style/demo.css" rel="stylesheet">
     <link href="/static/admin/style/typicons.css" rel="stylesheet">
     <link href="/static/admin/style/animate.css" rel="stylesheet">
-
+    
 </head>
-
 <body>
-    <!-- 头部 -->
+	<!-- 头部 -->
     <div class="navbar">
     <div class="navbar-inner">
         <div class="navbar-container">
@@ -82,12 +79,12 @@
         </div>
     </div>
 </div>
-    <!-- /头部 -->
-
-    <div class="main-container container-fluid">
-        <div class="page-container">
-            <!-- Page Sidebar -->
-            <div class="page-sidebar" id="sidebar">
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			<!-- Page Sidebar -->
+    <div class="page-sidebar" id="sidebar">
     <!-- Page Sidebar Header-->
     <div class="sidebar-header-wrapper">
         <input class="searchinput" type="text">
@@ -202,91 +199,78 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                        <li>
-                            <a href="<?php echo url('/admin/index'); ?>">主页</a>
-                        </li>
-                        <li class="active">配置</li>
-                    </ul>
+                                        <li>
+                        <a href="<?php echo url('admin/index'); ?>">主页</a>
+                    </li>
+                                        <li>
+                        <a href="<?php echo url('admin/lst'); ?>">管理员管理</a>
+                    </li>
+                                        <li class="active">编辑管理员</li>
+                                        </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
 
                 <!-- Page Body -->
                 <div class="page-body">
-
-                    <button type="button" tooltip="添加配置" class="btn btn-sm btn-azure btn-addon">
-                    配置预览
-                    </button>
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-12 col-xs-12">
-                            <form action="<?php echo url('Conf/conf'); ?>" method="POST">
-                            <div class="widget">
-                                <div class="widget-body">
-                                    <div class="flip-scroll">
-                                        <table class="table table-bordered table-hover">
-                                            <thead class="">
-                                                <tr>
-                                                    <th class="text-center">配置名称</th>
-                                                    <th class="text-left">配置值</th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-                                                <?php if(is_array($conf) || $conf instanceof \think\Collection || $conf instanceof \think\Paginator): if( count($conf)==0 ) : echo "" ;else: foreach($conf as $key=>$fo): ?>
-                                                <tr>
-                                                    <td align="center" name="<?php echo $fo['enname']; ?>" ><?php echo $fo['cnname']; ?></td>
-                                                    <td align="left">
-                                                        <?php if($fo['type'] == 1): ?>
-                                                            <input type="text" name="<?php echo $fo['enname']; ?>" class="form-control" value="<?php echo $fo['value']; ?>">
-                                                        <?php elseif($fo['type'] == 2): ?>
-                                                            <textarea name="<?php echo $fo['enname']; ?>"><?php echo $fo['value']; ?></textarea>
-                                                        <?php elseif($fo['type'] == 3): if($fo['values']): $arr = explode(',',$fo['values']); endif; foreach($arr as $v):?>
-                                                            <label>
-                                                                <input type="radio" name="<?php echo $fo['enname']; ?>" <?php if($fo['value']==$v){echo 'checked = "checked"';} ?> value="<?php echo $v;?>">
-                                                                &nbsp;&nbsp;<span class="text"><?php echo $v;?></span><br>
-                                                            </label>
-                                                            <?php endforeach;elseif($fo['type'] == 4): if($fo['values']): $arr = explode(',',$fo['values']); endif; foreach($arr as $v):?>
-                                                            <label>
-                                                                <input type="checkbox" class="col-name-" <?php if($fo['value']==$v){echo "checked='checked'";} ?> name="<?php echo $fo['enname']; ?>" value="<?php echo $v;?>">
-                                                                <span class="text"><?php echo $v;?></span><br>
-                                                            </label>
-                                                            <?php endforeach;else: if($fo['values']): $arr = explode(',',$fo['values']);endif; ?>                                                           
-                                                            <select name="<?php echo $fo['enname']; ?>">
-                                                            <?php foreach($arr as $v):?>
-                                                            <option value="<?php echo $v; ?>" <?php if($fo['value']==$v){echo "selected='selected'";} ?> ><?php echo $v; ?></option>
-                                                            <?php endforeach;?>
-                                                            </select>                                                           
-                                                        <?php endif; ?>
-                                                    </td>
-                                                </tr>
-                                                <?php endforeach; endif; else: echo "" ;endif; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div style="margin-top:5px;margin-left:600px">
-                                        <button type="submit">提交</button>
-                                    </div>
-                                </div>
+                    
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">编辑管理员</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    <form class="form-horizontal" role="form" action="" method="post">
+                    <input type="hidden"  name="id" value="<?php echo $admin['id']; ?>" />
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label no-padding-right">管理员名称</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="nickname" placeholder="" value="<?php echo $admin['nickname']; ?>" name="nickname" required="" type="text">
                             </div>
-                            </form>
+                            <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
-                    </div>
+
+                        <div class="form-group">
+                            <label for="group_id" class="col-sm-2 control-label no-padding-right">管理员密码</label>
+                            <div class="col-sm-6">
+                                <input class="form-control"  placeholder="" name="password" required="" type="password">
+                            </div>
+                             <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                                <label for="group_id" class="col-sm-2 control-label no-padding-right">确认管理员密码</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control"  placeholder="" name="password2" required="" type="password">
+                                </div>
+                                 <p class="help-block col-sm-4 red">* 必填</p>
+                            </div>    
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">保存信息</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
                 </div>
                 <!-- /Page Body -->
             </div>
             <!-- /Page Content -->
-        </div>
-    </div>
+		</div>	
+	</div>
 
-    <!--Basic Scripts-->
+	    <!--Basic Scripts-->
     <script src="/static/admin/style/jquery_002.js"></script>
     <script src="/static/admin/style/bootstrap.js"></script>
     <script src="/static/admin/style/jquery.js"></script>
     <!--Beyond Scripts-->
     <script src="/static/admin/style/beyond.js"></script>
+    
 
 
-
-</body>
-
-</html>
+</body></html>

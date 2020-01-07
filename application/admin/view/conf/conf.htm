@@ -80,8 +80,8 @@
                                                             {/if}
                                                             <?php foreach($arr as $v):?>
                                                             <label>
-                                                                <input type="radio" name="{$fo.enname}" value="<?php echo $v;?>">
-                                                                <span class="text"><?php echo $v;?></span><br>
+                                                                <input type="radio" name="{$fo.enname}" <?php if($fo['value']==$v){echo 'checked = "checked"';} ?> value="<?php echo $v;?>">
+                                                                &nbsp;&nbsp;<span class="text"><?php echo $v;?></span><br>
                                                             </label>
                                                             <?php endforeach;?>
                                                         {elseif condition="$fo['type'] eq 4"}
@@ -90,7 +90,7 @@
                                                             {/if}
                                                             <?php foreach($arr as $v):?>
                                                             <label>
-                                                                <input type="checkbox" class="col-name-" name="{$fo.enname}" value="<?php echo $v;?>">
+                                                                <input type="checkbox" class="col-name-" <?php if($fo['value']==$v){echo "checked='checked'";} ?> name="{$fo.enname}" value="<?php echo $v;?>">
                                                                 <span class="text"><?php echo $v;?></span><br>
                                                             </label>
                                                             <?php endforeach;?>
@@ -100,7 +100,7 @@
                                                             {/if}                                                           
                                                             <select name="{$fo.enname}">
                                                             <?php foreach($arr as $v):?>
-                                                            <option value="0">{$v}</option>
+                                                            <option value="{$v}" <?php if($fo['value']==$v){echo "selected='selected'";} ?> >{$v}</option>
                                                             <?php endforeach;?>
                                                             </select>                                                           
                                                         {/if}
